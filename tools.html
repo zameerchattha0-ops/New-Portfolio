@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Financial Tools - Zameer Haider Chattha</title>
+    <meta name="description" content="Interactive financial simulators: Tax Calculator, Wealth Simulator, EMI Calculator, Depreciation, Break-Even & Profit Margin tools." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'pastel-pink': '#ffd1dc', 'pastel-blue': '#aec6cf', 'pastel-green': '#b2e2f2',
+              'pastel-yellow': '#fdfd96', 'pastel-purple': '#c3b1e1', 'pastel-bg': '#f8f9fa',
+            },
+            fontFamily: { sans: ['Outfit', 'Inter', 'sans-serif'] },
+          },
+        },
+      }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="index.css" />
+    <script src="index.js" defer></script>
+    <script src="tools.js" defer></script>
+  </head>
+  <body class="min-h-screen bg-[#f8f9fa] text-slate-800 font-sans selection:bg-pink-200 selection:text-pink-900 overflow-x-hidden text-[14px] md:text-[15px]">
+    <div id="scroll-progress" class="scroll-progress"></div>
+
+    <!-- Navbar -->
+    <nav class="sticky top-6 z-50 mx-auto w-[calc(100%-3rem)] max-w-4xl px-6 py-4 clay-card bg-white/80 backdrop-blur-md flex items-center justify-between transition-transform duration-500 transform translate-y-[-100px]" id="navbar">
+      <a href="index.html" class="font-bold text-2xl tracking-tight text-pink-500">ZH.</a>
+      <div class="hidden md:flex gap-8 font-medium text-slate-600">
+        <a href="index.html#experience" class="hover:text-pink-500 transition-colors">Experience</a>
+        <a href="index.html#education" class="hover:text-pink-500 transition-colors">Education</a>
+        <a href="index.html#skills" class="hover:text-pink-500 transition-colors">Skills</a>
+        <div class="relative group">
+          <a href="#" class="text-pink-500 transition-colors flex items-center gap-1" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+            Tools <i data-lucide="chevron-down" class="w-4 h-4"></i>
+          </a>
+          <div class="absolute top-full left-0 mt-2 w-52 clay-card bg-white/95 backdrop-blur-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all flex flex-col p-3 gap-2 shadow-xl">
+            <a href="#tax-optimizer" class="text-sm hover:text-pink-500 transition-colors">Salary Tax Calculator</a>
+            <a href="#wealth-simulator" class="text-sm hover:text-pink-500 transition-colors">Wealth Simulator</a>
+            <a href="#emi-calculator" class="text-sm hover:text-pink-500 transition-colors">EMI / Loan Calculator</a>
+            <a href="#depreciation-calc" class="text-sm hover:text-pink-500 transition-colors">Depreciation Calculator</a>
+            <a href="#breakeven-analyzer" class="text-sm hover:text-pink-500 transition-colors">Break-Even Analyzer</a>
+            <a href="#profit-margin" class="text-sm hover:text-pink-500 transition-colors">Profit Margin</a>
+          </div>
+        </div>
+        <a href="index.html#contact" class="hover:text-pink-500 transition-colors">Contact</a>
+      </div>
+      <button class="md:hidden text-slate-600 hover:text-pink-500 transition-colors p-1" id="mobile-menu-btn" aria-label="Toggle menu">
+        <i data-lucide="menu" class="w-7 h-7" id="menu-icon"></i>
+      </button>
+      <div id="mobile-menu" class="absolute top-full left-0 right-0 mt-4 p-6 clay-card bg-white/95 backdrop-blur-xl flex flex-col gap-6 font-medium text-slate-600 md:hidden shadow-xl opacity-0 invisible transition-all duration-200 transform scale-95 -translate-y-2">
+        <a href="index.html" class="text-lg hover:text-pink-500 transition-colors mobile-link">Home</a>
+        <a href="#tax-optimizer" class="text-lg hover:text-pink-500 transition-colors mobile-link">Tax Calculator</a>
+        <a href="#wealth-simulator" class="text-lg hover:text-pink-500 transition-colors mobile-link">Wealth Simulator</a>
+        <a href="#emi-calculator" class="text-lg hover:text-pink-500 transition-colors mobile-link">EMI Calculator</a>
+        <a href="#depreciation-calc" class="text-lg hover:text-pink-500 transition-colors mobile-link">Depreciation</a>
+        <a href="#breakeven-analyzer" class="text-lg hover:text-pink-500 transition-colors mobile-link">Break-Even</a>
+        <a href="#profit-margin" class="text-lg hover:text-pink-500 transition-colors mobile-link">Profit Margin</a>
+        <a href="index.html#contact" class="text-lg hover:text-pink-500 transition-colors mobile-link">Contact</a>
+      </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-8 space-y-14 md:space-y-24 pt-16 md:pt-24">
+      <div class="text-center">
+        <a href="index.html" class="inline-flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-pink-500 transition-colors">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Portfolio
+        </a>
+      </div>
+
+      <div class="text-center space-y-4">
+        <h1 class="reveal-up text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-800">
+          Interactive <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">Simulators</span>
+        </h1>
+        <p class="reveal-up delay-100 text-slate-500 max-w-2xl mx-auto text-base md:text-lg">
+          Finance, accounting & audit tools — built for professionals.
+        </p>
+      </div>
+
+      <!-- ==================== 1. TAX CALCULATOR ==================== -->
+      <section id="tax-optimizer" class="reveal-up delay-200 space-y-6 md:space-y-10 scroll-mt-24">
+        <div class="max-w-3xl mx-auto clay-card-emerald p-4 md:p-8">
+          <div class="flex items-center gap-3 md:gap-4 mb-6 md:mb-8">
+            <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl clay-card flex items-center justify-center bg-white text-emerald-500 shrink-0">
+              <i data-lucide="calculator" class="w-5 h-5 md:w-6 md:h-6"></i>
+            </div>
+            <div>
+              <h3 class="text-lg md:text-2xl font-bold text-slate-800">Salary Tax Calculator (2025-26)</h3>
+              <p class="text-xs md:text-base text-slate-600">Auto-Calculation based on Income, Perks, and Investments.</p>
+            </div>
+          </div>
+          <div class="space-y-3 md:space-y-4" id="tax-accordions"></div>
+          <div class="mt-6 md:mt-8">
+            <button id="calc-tax-btn" class="w-full clay-button !bg-emerald-500 text-white font-bold py-3 md:py-4 text-sm md:text-lg hover:scale-[1.02] transition-transform">Calculate Liability</button>
+          </div>
+          <div id="tax-result-container" class="mt-6 md:mt-8 bg-white/80 rounded-2xl p-6 border border-emerald-100 shadow-sm text-center hidden opacity-0 transition-opacity duration-500">
+            <p class="text-slate-500 font-semibold mb-2">Estimated Annual Tax Liability</p>
+            <h2 id="tax-result" class="text-4xl md:text-5xl font-extrabold text-emerald-600"></h2>
+            <p class="text-xs text-slate-400 mt-4">*Simplified estimation for demonstration purposes.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 2. WEALTH SIMULATOR ==================== -->
+      <section id="wealth-simulator" class="reveal-up space-y-6 md:space-y-10 scroll-mt-24">
+        <div class="max-w-3xl mx-auto clay-card-blue p-4 md:p-8">
+          <div class="flex items-center gap-3 md:gap-4 mb-6 md:mb-8">
+            <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl clay-card flex items-center justify-center bg-white text-blue-500 shrink-0">
+              <i data-lucide="line-chart" class="w-5 h-5 md:w-6 md:h-6"></i>
+            </div>
+            <div>
+              <h3 class="text-lg md:text-2xl font-bold text-slate-800">Wealth Architecture Simulator</h3>
+              <p class="text-xs md:text-base text-slate-600">Visualize the exponential power of consistent investing.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="space-y-6">
+              <div class="space-y-2"><div class="flex justify-between"><label class="text-sm font-semibold text-slate-700">Initial Investment</label><span id="ws-initial-val" class="text-sm font-bold text-blue-600"></span></div><input type="range" id="ws-initial" min="0" max="1000000" step="10000" value="10000" class="w-full accent-blue-500" /></div>
+              <div class="space-y-2"><div class="flex justify-between"><label class="text-sm font-semibold text-slate-700">Monthly Contribution</label><span id="ws-monthly-val" class="text-sm font-bold text-blue-600"></span></div><input type="range" id="ws-monthly" min="0" max="200000" step="1000" value="5000" class="w-full accent-blue-500" /></div>
+              <div class="space-y-2"><div class="flex justify-between"><label class="text-sm font-semibold text-slate-700">Annual Return (%)</label><span id="ws-rate-val" class="text-sm font-bold text-blue-600"></span></div><input type="range" id="ws-rate" min="1" max="30" step="0.5" value="12" class="w-full accent-blue-500" /></div>
+              <div class="space-y-2"><div class="flex justify-between"><label class="text-sm font-semibold text-slate-700">Duration (Years)</label><span id="ws-years-val" class="text-sm font-bold text-blue-600"></span></div><input type="range" id="ws-years" min="1" max="40" step="1" value="10" class="w-full accent-blue-500" /></div>
+            </div>
+            <div class="bg-white/60 rounded-2xl p-6 border border-white/50 shadow-sm flex flex-col justify-center space-y-6">
+              <div><p class="text-sm font-semibold text-slate-500">Future Value</p><h2 id="ws-future-value" class="text-3xl md:text-4xl font-extrabold text-slate-800"></h2></div>
+              <div class="grid grid-cols-2 gap-4 pt-4 border-t border-blue-100/50">
+                <div><p class="text-xs font-semibold text-slate-500">Total Invested</p><p id="ws-total-invested" class="text-lg font-bold text-slate-700"></p></div>
+                <div><p class="text-xs font-semibold text-slate-500">Interest Earned</p><p id="ws-interest-earned" class="text-lg font-bold text-emerald-600"></p></div>
+              </div>
+              <div class="h-4 w-full bg-blue-100 rounded-full overflow-hidden flex">
+                <div id="ws-bar-invested" class="h-full bg-blue-500 transition-all duration-500" style="width:0%"></div>
+                <div id="ws-bar-interest" class="h-full bg-emerald-400 transition-all duration-500" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 3. EMI / LOAN CALCULATOR ==================== -->
+      <section id="emi-calculator" class="reveal-up space-y-6 md:space-y-10 scroll-mt-24">
+        <div class="max-w-3xl mx-auto clay-card-pink p-4 md:p-8">
+          <div class="flex items-center gap-3 md:gap-4 mb-6 md:mb-8">
+            <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl clay-card flex items-center justify-center bg-white text-pink-500 shrink-0">
+              <i data-lucide="banknote" class="w-5 h-5 md:w-6 md:h-6"></i>
+            </div>
+            <div>
+              <h3 class="text-lg md:text-2xl font-bold text-slate-800">EMI / Loan Calculator</h3>
+              <p class="text-xs md:text-base text-slate-600">Calculate monthly installments and total cost of a loan.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="space-y-6">
+              <div class="space-y-2"><div class="flex justify-between"><label class="text-sm font-semibold text-slate-700">Loan Amount</label><span id="emi-amount-val" class="text-sm font-bold text-pink-600"></span></div><input type="range" id="emi-amount" min="10000" max="10000000" step="10000" value="500000" class="w-full accent-pink-500" /></div>
+              <div class="space-y-2"><div class="flex justify-between"><label class="text-sm font-semibold text-slate-700">Interest Rate (% p.a.)</label><span id="emi-rate-val" class="text-sm font-bold text-pink-600"></span></div><input type="range" id="emi-rate" min="1" max="40" step="0.5" value="15" class="w-full accent-pink-500" /></div>
+              <div class="space-y-2"><div class="flex justify-between"><label class="text-sm font-semibold text-slate-700">Tenure (Months)</label><span id="emi-tenure-val" class="text-sm font-bold text-pink-600"></span></div><input type="range" id="emi-tenure" min="1" max="360" step="1" value="60" class="w-full accent-pink-500" /></div>
+            </div>
+            <div class="bg-white/60 rounded-2xl p-6 border border-white/50 shadow-sm flex flex-col justify-center space-y-5">
+              <div><p class="text-sm font-semibold text-slate-500">Monthly EMI</p><h2 id="emi-monthly" class="text-3xl md:text-4xl font-extrabold text-pink-600"></h2></div>
+              <div class="grid grid-cols-2 gap-4 pt-4 border-t border-pink-100/50">
+                <div><p class="text-xs font-semibold text-slate-500">Total Payment</p><p id="emi-total" class="text-lg font-bold text-slate-700"></p></div>
+                <div><p class="text-xs font-semibold text-slate-500">Total Interest</p><p id="emi-interest" class="text-lg font-bold text-red-500"></p></div>
+              </div>
+              <div class="h-4 w-full bg-pink-100 rounded-full overflow-hidden flex">
+                <div id="emi-bar-principal" class="h-full bg-pink-500 transition-all duration-500" style="width:0%"></div>
+                <div id="emi-bar-interest" class="h-full bg-red-400 transition-all duration-500" style="width:0%"></div>
+              </div>
+              <div class="flex gap-4 text-[10px] font-bold"><span class="flex items-center gap-1"><span class="w-3 h-3 bg-pink-500 rounded-sm inline-block"></span> Principal</span><span class="flex items-center gap-1"><span class="w-3 h-3 bg-red-400 rounded-sm inline-block"></span> Interest</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 4. DEPRECIATION CALCULATOR ==================== -->
+      <section id="depreciation-calc" class="reveal-up space-y-6 md:space-y-10 scroll-mt-24">
+        <div class="max-w-3xl mx-auto clay-card-purple p-4 md:p-8">
+          <div class="flex items-center gap-3 md:gap-4 mb-6 md:mb-8">
+            <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl clay-card flex items-center justify-center bg-white text-purple-500 shrink-0">
+              <i data-lucide="trending-down" class="w-5 h-5 md:w-6 md:h-6"></i>
+            </div>
+            <div>
+              <h3 class="text-lg md:text-2xl font-bold text-slate-800">Depreciation Calculator</h3>
+              <p class="text-xs md:text-base text-slate-600">SLM, Written Down Value & Double Declining Balance methods.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            <div class="flex flex-col gap-1.5"><label class="text-xs md:text-sm font-semibold text-slate-700">Asset Cost</label><input type="number" id="dep-cost" value="1000000" placeholder="Cost of asset" class="px-4 py-2.5 rounded-xl border-2 border-slate-100 bg-white/50 focus:bg-white focus:border-purple-300 outline-none transition-all text-slate-700 text-sm" /></div>
+            <div class="flex flex-col gap-1.5"><label class="text-xs md:text-sm font-semibold text-slate-700">Salvage Value</label><input type="number" id="dep-salvage" value="100000" placeholder="Residual value" class="px-4 py-2.5 rounded-xl border-2 border-slate-100 bg-white/50 focus:bg-white focus:border-purple-300 outline-none transition-all text-slate-700 text-sm" /></div>
+            <div class="flex flex-col gap-1.5"><label class="text-xs md:text-sm font-semibold text-slate-700">Useful Life (Years)</label><input type="number" id="dep-life" value="10" min="1" max="50" placeholder="Years" class="px-4 py-2.5 rounded-xl border-2 border-slate-100 bg-white/50 focus:bg-white focus:border-purple-300 outline-none transition-all text-slate-700 text-sm" /></div>
+            <div class="flex flex-col gap-1.5"><label class="text-xs md:text-sm font-semibold text-slate-700">Method</label><select id="dep-method" class="px-4 py-2.5 rounded-xl border-2 border-slate-100 bg-white/50 focus:bg-white focus:border-purple-300 outline-none transition-all text-slate-700 text-sm"><option value="slm">Straight Line (SLM)</option><option value="wdv">Written Down Value</option><option value="ddb">Double Declining Balance</option></select></div>
+          </div>
+          <button id="calc-dep-btn" class="w-full clay-button !bg-purple-500 text-white font-bold py-3 md:py-4 text-sm md:text-lg hover:scale-[1.02] transition-transform">Calculate Depreciation</button>
+          <div id="dep-result" class="mt-6 hidden">
+            <div class="grid grid-cols-2 gap-4 mb-4">
+              <div class="bg-white/60 rounded-xl p-4 text-center"><p class="text-xs font-semibold text-slate-500">Year 1 Depreciation</p><p id="dep-annual" class="text-2xl font-extrabold text-purple-600"></p></div>
+              <div class="bg-white/60 rounded-xl p-4 text-center"><p class="text-xs font-semibold text-slate-500">Total Depreciation</p><p id="dep-total" class="text-2xl font-extrabold text-slate-700"></p></div>
+            </div>
+            <div class="bg-white/60 rounded-xl overflow-hidden">
+              <table class="w-full text-xs md:text-sm">
+                <thead><tr class="bg-purple-100/50 text-purple-800"><th class="p-2 text-left">Year</th><th class="p-2 text-right">Depreciation</th><th class="p-2 text-right">Acc. Dep.</th><th class="p-2 text-right">Book Value</th></tr></thead>
+                <tbody id="dep-schedule"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 5. BREAK-EVEN ANALYZER ==================== -->
+      <section id="breakeven-analyzer" class="reveal-up space-y-6 md:space-y-10 scroll-mt-24">
+        <div class="max-w-3xl mx-auto clay-card p-4 md:p-8 border border-amber-100">
+          <div class="flex items-center gap-3 md:gap-4 mb-6 md:mb-8">
+            <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl clay-card flex items-center justify-center bg-white text-amber-500 shrink-0">
+              <i data-lucide="target" class="w-5 h-5 md:w-6 md:h-6"></i>
+            </div>
+            <div>
+              <h3 class="text-lg md:text-2xl font-bold text-slate-800">Break-Even Analyzer</h3>
+              <p class="text-xs md:text-base text-slate-600">Determine the point where revenue equals total costs.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="space-y-6">
+              <div class="space-y-2"><div class="flex justify-between"><label class="text-sm font-semibold text-slate-700">Fixed Costs</label><span id="be-fixed-val" class="text-sm font-bold text-amber-600"></span></div><input type="range" id="be-fixed" min="10000" max="5000000" step="10000" value="500000" class="w-full accent-amber-500" /></div>
+              <div class="space-y-2"><div class="flex justify-between"><label class="text-sm font-semibold text-slate-700">Variable Cost / Unit</label><span id="be-variable-val" class="text-sm font-bold text-amber-600"></span></div><input type="range" id="be-variable" min="10" max="10000" step="10" value="200" class="w-full accent-amber-500" /></div>
+              <div class="space-y-2"><div class="flex justify-between"><label class="text-sm font-semibold text-slate-700">Selling Price / Unit</label><span id="be-price-val" class="text-sm font-bold text-amber-600"></span></div><input type="range" id="be-price" min="10" max="20000" step="10" value="500" class="w-full accent-amber-500" /></div>
+            </div>
+            <div class="bg-white/60 rounded-2xl p-6 border border-white/50 shadow-sm flex flex-col justify-center space-y-5">
+              <div><p class="text-sm font-semibold text-slate-500">Break-Even Units</p><h2 id="be-units" class="text-3xl md:text-4xl font-extrabold text-amber-600"></h2></div>
+              <div class="grid grid-cols-2 gap-4 pt-4 border-t border-amber-100/50">
+                <div><p class="text-xs font-semibold text-slate-500">Break-Even Revenue</p><p id="be-revenue" class="text-lg font-bold text-slate-700"></p></div>
+                <div><p class="text-xs font-semibold text-slate-500">Contribution / Unit</p><p id="be-contribution" class="text-lg font-bold text-emerald-600"></p></div>
+              </div>
+              <div><p class="text-xs font-semibold text-slate-500">Contribution Margin Ratio</p><p id="be-margin-ratio" class="text-lg font-bold text-amber-700"></p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 6. PROFIT MARGIN CALCULATOR ==================== -->
+      <section id="profit-margin" class="reveal-up space-y-6 md:space-y-10 scroll-mt-24">
+        <div class="max-w-3xl mx-auto clay-card-green p-4 md:p-8">
+          <div class="flex items-center gap-3 md:gap-4 mb-6 md:mb-8">
+            <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl clay-card flex items-center justify-center bg-white text-green-500 shrink-0">
+              <i data-lucide="percent" class="w-5 h-5 md:w-6 md:h-6"></i>
+            </div>
+            <div>
+              <h3 class="text-lg md:text-2xl font-bold text-slate-800">Profit Margin Calculator</h3>
+              <p class="text-xs md:text-base text-slate-600">Analyze gross profit, margin percentage & markup.</p>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="space-y-6">
+              <div class="space-y-2"><div class="flex justify-between"><label class="text-sm font-semibold text-slate-700">Cost Price</label><span id="pm-cost-val" class="text-sm font-bold text-green-600"></span></div><input type="range" id="pm-cost" min="10" max="1000000" step="100" value="5000" class="w-full accent-green-500" /></div>
+              <div class="space-y-2"><div class="flex justify-between"><label class="text-sm font-semibold text-slate-700">Selling Price</label><span id="pm-sell-val" class="text-sm font-bold text-green-600"></span></div><input type="range" id="pm-sell" min="10" max="2000000" step="100" value="8000" class="w-full accent-green-500" /></div>
+            </div>
+            <div class="bg-white/60 rounded-2xl p-6 border border-white/50 shadow-sm flex flex-col justify-center space-y-5">
+              <div><p class="text-sm font-semibold text-slate-500">Gross Profit</p><h2 id="pm-profit" class="text-3xl md:text-4xl font-extrabold text-green-600"></h2></div>
+              <div class="grid grid-cols-2 gap-4 pt-4 border-t border-green-100/50">
+                <div><p class="text-xs font-semibold text-slate-500">Profit Margin</p><p id="pm-margin" class="text-2xl font-bold text-emerald-600"></p></div>
+                <div><p class="text-xs font-semibold text-slate-500">Markup</p><p id="pm-markup" class="text-2xl font-bold text-blue-600"></p></div>
+              </div>
+              <div class="h-4 w-full bg-green-100 rounded-full overflow-hidden flex">
+                <div id="pm-bar-cost" class="h-full bg-slate-400 transition-all duration-500" style="width:0%"></div>
+                <div id="pm-bar-profit" class="h-full bg-green-500 transition-all duration-500" style="width:0%"></div>
+              </div>
+              <div class="flex gap-4 text-[10px] font-bold"><span class="flex items-center gap-1"><span class="w-3 h-3 bg-slate-400 rounded-sm inline-block"></span> Cost</span><span class="flex items-center gap-1"><span class="w-3 h-3 bg-green-500 rounded-sm inline-block"></span> Profit</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="py-6 md:py-8 text-center text-slate-500 font-medium text-xs md:text-sm border-t border-slate-200/50 mt-12 bg-white/50 backdrop-blur-sm">
+      <p>&copy; <span id="current-year"></span> Zameer Haider Chattha. Crafted with &#x1F496; and claymorphism.</p>
+    </footer>
+
+    <button id="scroll-to-top" class="fixed bottom-6 right-6 z-50 p-3 md:p-4 rounded-full bg-pink-500 text-white shadow-lg hover:bg-pink-600 hover:scale-110 transition-all opacity-0 invisible scale-50" aria-label="Scroll to top">
+      <i data-lucide="arrow-up" class="w-6 h-6"></i>
+    </button>
+  </body>
+</html>
