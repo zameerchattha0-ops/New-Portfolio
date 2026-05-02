@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Graphics | Zameer Haider Chattha</title>
+  <meta name="description" content="AI-powered graphic design portfolio by Zameer Haider Chattha. Posters, visuals, and creative work generated using AI tools.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Header -->
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/logo.png" alt="Zameer Haider Chattha" class="logo-img" onerror="this.style.display='none'">
+    </a>
+    <nav class="nav" id="nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="index.html#experience" class="nav-link">Experience</a>
+      <a href="index.html#services" class="nav-link">Services</a>
+      <a href="index.html#education" class="nav-link">Education</a>
+      <a href="tools.html" class="nav-link">Tools</a>
+      <a href="ai-graphics.html" class="nav-link active">AI Graphics</a>
+    </nav>
+    <div class="nav-overlay" id="navOverlay"></div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Page Hero -->
+<section class="hero" id="hero" style="min-height:50vh;padding-top:140px;padding-bottom:40px">
+  <div class="hero-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+  </div>
+  <div class="container hero-content">
+    <h1 class="hero-name" style="font-size:clamp(1.8rem,4vw,3rem)">AI Powered Graphics</h1>
+    <p class="hero-subtitle">Creative visuals and poster designs generated using AI tools - Midjourney, Canva AI, and more.</p>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section class="section" id="gallery">
+  <div class="container">
+    <h2 class="section-title reveal">My Work</h2>
+    <div class="gallery-grid">
+      <div class="gallery-card reveal"><img src="assets/1.jpg" alt="AI Design 1" loading="lazy"><span class="gallery-caption">AI Poster Design</span></div>
+      <div class="gallery-card reveal"><img src="assets/2.jpg" alt="AI Design 2" loading="lazy"><span class="gallery-caption">Creative Visual</span></div>
+      <div class="gallery-card reveal"><img src="assets/3.jpg" alt="AI Design 3" loading="lazy"><span class="gallery-caption">Digital Artwork</span></div>
+      <div class="gallery-card reveal"><img src="assets/4.jpg" alt="AI Design 4" loading="lazy"><span class="gallery-caption">Brand Mockup</span></div>
+      <div class="gallery-card reveal"><img src="assets/5.jpg" alt="AI Design 5" loading="lazy"><span class="gallery-caption">Social Media</span></div>
+      <div class="gallery-card reveal"><img src="assets/6.jpg" alt="AI Design 6" loading="lazy"><span class="gallery-caption">Illustration</span></div>
+      <div class="gallery-card reveal"><img src="assets/7.jpg" alt="AI Design 7" loading="lazy"><span class="gallery-caption">Concept Art</span></div>
+      <div class="gallery-card reveal"><img src="assets/8.jpg" alt="AI Design 8" loading="lazy"><span class="gallery-caption">Typography</span></div>
+      <div class="gallery-card reveal"><img src="assets/9.jpg" alt="AI Design 9" loading="lazy"><span class="gallery-caption">3D Render</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+  <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous">&lsaquo;</button>
+  <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next">&rsaquo;</button>
+  <img id="lightboxImg" src="" alt="Preview">
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bar">
+      <a href="index.html" style="color:var(--sky)">&larr; Back to Portfolio</a>
+      &nbsp;&nbsp;|&nbsp;&nbsp; &copy; 2026 Zameer Haider Chattha
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

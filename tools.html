@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financial Tools | Zameer Haider Chattha</title>
+  <meta name="description" content="Interactive financial simulators: Tax Calculator, Wealth Simulator, EMI Calculator, Depreciation, Break-Even & Profit Margin tools.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/tools.css">
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/logo.png" alt="Zameer Haider Chattha" class="logo-img" onerror="this.style.display='none'">
+    </a>
+    <nav class="nav" id="nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="index.html#experience" class="nav-link">Experience</a>
+      <a href="index.html#services" class="nav-link">Services</a>
+      <a href="index.html#education" class="nav-link">Education</a>
+      <a href="tools.html" class="nav-link active">Tools</a>
+      <a href="ai-graphics.html" class="nav-link">AI Graphics</a>
+    </nav>
+    <div class="nav-overlay" id="navOverlay"></div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Page Hero -->
+<section class="hero" id="hero" style="min-height:45vh;padding-top:130px;padding-bottom:30px">
+  <div class="hero-shapes"><div class="shape shape-1"></div><div class="shape shape-3"></div></div>
+  <div class="container hero-content">
+    <h1 class="hero-name" style="font-size:clamp(1.8rem,4vw,3rem)">Interactive Simulators</h1>
+    <p class="hero-subtitle">Finance, accounting & audit tools - built for professionals.</p>
+  </div>
+</section>
+
+<!-- ==================== 1. TAX CALCULATOR ==================== -->
+<section class="section" id="tax-optimizer">
+  <div class="container" style="max-width:800px">
+    <div class="accordion-item reveal">
+      <div class="accordion-header active">
+        <h3>🧮 Salary Tax Calculator (2025-26)</h3>
+        <span class="accordion-arrow">▼</span>
+      </div>
+      <div class="accordion-body active">
+        <p class="tool-desc">Full FBR slab-based calculation with Perquisites, Deductions, Credits & Rebates.</p>
+
+        <!-- Sub-accordion: 1. Salary -->
+        <button class="tax-sub-header open">1. Monthly Gross Salary & Allowances</button>
+        <div class="tax-sub-body">
+          <div class="tool-form-grid">
+            <div class="tool-field"><label>Annual Basic Salary</label><input type="number" id="tax-basic" placeholder="Total Basic for Year"></div>
+            <div class="tool-field"><label>Annual Bonus / Incentives</label><input type="number" id="tax-bonus" placeholder="Annual Total"></div>
+            <div class="tool-field"><label>Medical Allowance</label><input type="number" id="tax-medical" placeholder="Annual Allowance"></div>
+            <div class="tool-field"><label>COLA / Utility / HRA (Cash)</label><input type="number" id="tax-other" placeholder="Total Taxable Allowances"></div>
+          </div>
+        </div>
+
+        <!-- Sub-accordion: 2. Perquisites -->
+        <button class="tax-sub-header">2. Perquisites (Adds to Taxable Income)</button>
+        <div class="tax-sub-body">
+          <div class="tool-form-grid">
+            <div class="tool-field"><label>Company Car Cost</label><input type="number" id="tax-car-cost" placeholder="Purchase Cost"></div>
+            <div class="tool-field">
+              <label>Car Usage</label>
+              <select id="tax-car-usage"><option value="part">Part Personal (5%)</option><option value="full">Full Personal (10%)</option></select>
+            </div>
+            <div class="tool-field"><label>Share Scheme FMV</label><input type="number" id="tax-share-fmv" placeholder="Fair Market Value"></div>
+            <div class="tool-field"><label>Share Scheme Cost</label><input type="number" id="tax-share-cost" placeholder="Price Paid"></div>
+          </div>
+          <div class="tool-field" style="margin-top:12px">
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+              <input type="checkbox" id="tax-housing" style="width:18px;height:18px"> Official Housing Provided? (Adds 45% of salary)
+            </label>
+          </div>
+        </div>
+
+        <!-- Sub-accordion: 3. Deductions -->
+        <button class="tax-sub-header">3. Deductible Allowances (Reduces Income)</button>
+        <div class="tax-sub-body">
+          <div class="tool-form-grid">
+            <div class="tool-field"><label>Zakat Paid (Sec 60)</label><input type="number" id="tax-zakat" placeholder="Amount"></div>
+            <div class="tool-field"><label>Education Expenses (Sec 60D)</label><input type="number" id="tax-education" placeholder="Tuition Fees"></div>
+          </div>
+        </div>
+
+        <!-- Sub-accordion: 4. Credits -->
+        <button class="tax-sub-header">4. Tax Reduction Investments</button>
+        <div class="tax-sub-body">
+          <div class="tool-form-grid">
+            <div class="tool-field"><label>Charitable Donations (Sec 61)</label><input type="number" id="tax-donation" placeholder="Amount Donated"></div>
+            <div class="tool-field"><label>Pension Fund (Sec 63)</label><input type="number" id="tax-pension" placeholder="Contribution"></div>
+            <div class="tool-field"><label>Housing Loan Markup (Sec 63A)</label><input type="number" id="tax-housing-loan" placeholder="Markup Paid"></div>
+          </div>
+        </div>
+
+        <!-- Sub-accordion: 5. Rebates -->
+        <button class="tax-sub-header">5. Special Status Rebates</button>
+        <div class="tax-sub-body">
+          <div class="tool-field" style="display:flex;flex-direction:column;gap:10px">
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+              <input type="checkbox" id="tax-teacher" style="width:18px;height:18px"> Full Time Teacher/Researcher (25% Tax Reduction)
+            </label>
+            <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+              <input type="checkbox" id="tax-senior" style="width:18px;height:18px"> Senior Citizen (>60y, Income < 1M) (50% Tax Reduction)
+            </label>
+          </div>
+        </div>
+
+        <button id="calc-tax-btn" class="btn-3d btn-linkedin" style="width:100%;justify-content:center;margin-top:24px">Calculate Tax Liability</button>
+        <div id="tax-result-container" class="tool-result hidden">
+          <p class="tool-result-label">Estimated Annual Tax Liability</p>
+          <h2 id="tax-result" class="tool-result-value" style="color:var(--mint-dark)"></h2>
+          <div id="tax-breakdown" style="margin-top:16px"></div>
+          <p class="tool-result-note">*Based on FBR Income Tax Ordinance 2001 slab rates.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 2. WEALTH SIMULATOR ==================== -->
+<section class="section section-alt" id="wealth-simulator">
+  <div class="container" style="max-width:800px">
+    <div class="accordion-item reveal">
+      <div class="accordion-header active">
+        <h3>📈 Wealth Architecture Simulator</h3>
+        <span class="accordion-arrow">▼</span>
+      </div>
+      <div class="accordion-body active">
+        <p class="tool-desc">Visualize the exponential power of consistent investing.</p>
+        <div class="tool-slider-grid">
+          <div class="tool-slider">
+            <div class="slider-header"><label>Initial Investment</label><span id="ws-initial-val"></span></div>
+            <input type="range" id="ws-initial" min="0" max="1000000" step="10000" value="10000">
+          </div>
+          <div class="tool-slider">
+            <div class="slider-header"><label>Monthly Contribution</label><span id="ws-monthly-val"></span></div>
+            <input type="range" id="ws-monthly" min="0" max="200000" step="1000" value="5000">
+          </div>
+          <div class="tool-slider">
+            <div class="slider-header"><label>Annual Return (%)</label><span id="ws-rate-val"></span></div>
+            <input type="range" id="ws-rate" min="1" max="30" step="0.5" value="12">
+          </div>
+          <div class="tool-slider">
+            <div class="slider-header"><label>Duration (Years)</label><span id="ws-years-val"></span></div>
+            <input type="range" id="ws-years" min="1" max="40" step="1" value="10">
+          </div>
+        </div>
+        <div class="tool-result-row">
+          <div class="result-card main"><p class="tool-result-label">Future Value</p><h2 id="ws-future-value" class="tool-result-value"></h2></div>
+          <div class="result-card"><p class="tool-result-label">Total Invested</p><p id="ws-total-invested" class="result-sub-value"></p></div>
+          <div class="result-card"><p class="tool-result-label">Interest Earned</p><p id="ws-interest-earned" class="result-sub-value" style="color:var(--mint-dark)"></p></div>
+        </div>
+        <div class="progress-bar-track">
+          <div id="ws-bar-invested" class="bar-fill bar-primary" style="width:0%"></div>
+          <div id="ws-bar-interest" class="bar-fill bar-success" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 3. EMI CALCULATOR ==================== -->
+<section class="section" id="emi-calculator">
+  <div class="container" style="max-width:800px">
+    <div class="accordion-item reveal">
+      <div class="accordion-header active">
+        <h3>💰 EMI / Loan Calculator</h3>
+        <span class="accordion-arrow">▼</span>
+      </div>
+      <div class="accordion-body active">
+        <p class="tool-desc">Calculate monthly installments and total cost of a loan.</p>
+        <div class="tool-slider-grid">
+          <div class="tool-slider">
+            <div class="slider-header"><label>Loan Amount</label><span id="emi-amount-val"></span></div>
+            <input type="range" id="emi-amount" min="10000" max="10000000" step="10000" value="500000">
+          </div>
+          <div class="tool-slider">
+            <div class="slider-header"><label>Interest Rate (% p.a.)</label><span id="emi-rate-val"></span></div>
+            <input type="range" id="emi-rate" min="1" max="40" step="0.5" value="15">
+          </div>
+          <div class="tool-slider">
+            <div class="slider-header"><label>Tenure (Months)</label><span id="emi-tenure-val"></span></div>
+            <input type="range" id="emi-tenure" min="1" max="360" step="1" value="60">
+          </div>
+        </div>
+        <div class="tool-result-row">
+          <div class="result-card main"><p class="tool-result-label">Monthly EMI</p><h2 id="emi-monthly" class="tool-result-value" style="color:var(--pink-dark)"></h2></div>
+          <div class="result-card"><p class="tool-result-label">Total Payment</p><p id="emi-total" class="result-sub-value"></p></div>
+          <div class="result-card"><p class="tool-result-label">Total Interest</p><p id="emi-interest" class="result-sub-value" style="color:var(--coral)"></p></div>
+        </div>
+        <div class="progress-bar-track">
+          <div id="emi-bar-principal" class="bar-fill bar-pink" style="width:0%"></div>
+          <div id="emi-bar-interest" class="bar-fill bar-danger" style="width:0%"></div>
+        </div>
+        <div class="bar-legend"><span><span class="dot-pink"></span> Principal</span><span><span class="dot-red"></span> Interest</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 4. DEPRECIATION ==================== -->
+<section class="section section-alt" id="depreciation-calc">
+  <div class="container" style="max-width:800px">
+    <div class="accordion-item reveal">
+      <div class="accordion-header active">
+        <h3>📉 Depreciation Calculator</h3>
+        <span class="accordion-arrow">▼</span>
+      </div>
+      <div class="accordion-body active">
+        <p class="tool-desc">SLM, Written Down Value & Double Declining Balance methods.</p>
+        <div class="tool-form-grid">
+          <div class="tool-field"><label>Asset Cost</label><input type="number" id="dep-cost" value="1000000" placeholder="Cost of asset"></div>
+          <div class="tool-field"><label>Salvage Value</label><input type="number" id="dep-salvage" value="100000" placeholder="Residual value"></div>
+          <div class="tool-field"><label>Useful Life (Years)</label><input type="number" id="dep-life" value="10" min="1" max="50"></div>
+          <div class="tool-field">
+            <label>Method</label>
+            <select id="dep-method">
+              <option value="slm">Straight Line (SLM)</option>
+              <option value="wdv">Written Down Value</option>
+              <option value="ddb">Double Declining Balance</option>
+            </select>
+          </div>
+        </div>
+        <button id="calc-dep-btn" class="btn-3d btn-whatsapp" style="width:100%;justify-content:center;margin-top:20px;--btn-bg:var(--lavender)">Calculate Depreciation</button>
+        <div id="dep-result" class="hidden" style="margin-top:20px">
+          <div class="tool-result-row">
+            <div class="result-card"><p class="tool-result-label">Year 1 Depreciation</p><p id="dep-annual" class="result-sub-value" style="color:var(--lavender-dark)"></p></div>
+            <div class="result-card"><p class="tool-result-label">Total Depreciation</p><p id="dep-total" class="result-sub-value"></p></div>
+          </div>
+          <div class="dep-table-wrap">
+            <table class="dep-table">
+              <thead><tr><th>Year</th><th>Depreciation</th><th>Acc. Dep.</th><th>Book Value</th></tr></thead>
+              <tbody id="dep-schedule"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 5. BREAK-EVEN ==================== -->
+<section class="section" id="breakeven-analyzer">
+  <div class="container" style="max-width:800px">
+    <div class="accordion-item reveal">
+      <div class="accordion-header active">
+        <h3>🎯 Break-Even Analyzer</h3>
+        <span class="accordion-arrow">▼</span>
+      </div>
+      <div class="accordion-body active">
+        <p class="tool-desc">Determine the point where revenue equals total costs.</p>
+        <div class="tool-slider-grid">
+          <div class="tool-slider">
+            <div class="slider-header"><label>Fixed Costs</label><span id="be-fixed-val"></span></div>
+            <input type="range" id="be-fixed" min="10000" max="5000000" step="10000" value="500000">
+          </div>
+          <div class="tool-slider">
+            <div class="slider-header"><label>Variable Cost / Unit</label><span id="be-variable-val"></span></div>
+            <input type="range" id="be-variable" min="10" max="10000" step="10" value="200">
+          </div>
+          <div class="tool-slider">
+            <div class="slider-header"><label>Selling Price / Unit</label><span id="be-price-val"></span></div>
+            <input type="range" id="be-price" min="10" max="20000" step="10" value="500">
+          </div>
+        </div>
+        <div class="tool-result-row">
+          <div class="result-card main"><p class="tool-result-label">Break-Even Units</p><h2 id="be-units" class="tool-result-value" style="color:var(--amber-dark)"></h2></div>
+          <div class="result-card"><p class="tool-result-label">Break-Even Revenue</p><p id="be-revenue" class="result-sub-value"></p></div>
+          <div class="result-card"><p class="tool-result-label">Contribution/Unit</p><p id="be-contribution" class="result-sub-value" style="color:var(--mint-dark)"></p></div>
+        </div>
+        <div class="result-card" style="text-align:center;margin-top:12px"><p class="tool-result-label">CM Ratio</p><p id="be-margin-ratio" class="result-sub-value" style="font-size:1.3rem"></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 6. PROFIT MARGIN ==================== -->
+<section class="section section-alt" id="profit-margin">
+  <div class="container" style="max-width:800px">
+    <div class="accordion-item reveal">
+      <div class="accordion-header active">
+        <h3>💹 Profit Margin Calculator</h3>
+        <span class="accordion-arrow">▼</span>
+      </div>
+      <div class="accordion-body active">
+        <p class="tool-desc">Analyze gross profit, margin percentage & markup.</p>
+        <div class="tool-slider-grid">
+          <div class="tool-slider">
+            <div class="slider-header"><label>Cost Price</label><span id="pm-cost-val"></span></div>
+            <input type="range" id="pm-cost" min="10" max="1000000" step="100" value="5000">
+          </div>
+          <div class="tool-slider">
+            <div class="slider-header"><label>Selling Price</label><span id="pm-sell-val"></span></div>
+            <input type="range" id="pm-sell" min="10" max="2000000" step="100" value="8000">
+          </div>
+        </div>
+        <div class="tool-result-row">
+          <div class="result-card main"><p class="tool-result-label">Gross Profit</p><h2 id="pm-profit" class="tool-result-value" style="color:var(--mint-dark)"></h2></div>
+          <div class="result-card"><p class="tool-result-label">Profit Margin</p><p id="pm-margin" class="result-sub-value" style="color:var(--mint-dark)"></p></div>
+          <div class="result-card"><p class="tool-result-label">Markup</p><p id="pm-markup" class="result-sub-value" style="color:var(--sky-dark)"></p></div>
+        </div>
+        <div class="progress-bar-track">
+          <div id="pm-bar-cost" class="bar-fill bar-slate" style="width:0%"></div>
+          <div id="pm-bar-profit" class="bar-fill bar-success" style="width:0%"></div>
+        </div>
+        <div class="bar-legend"><span><span class="dot-slate"></span> Cost</span><span><span class="dot-green"></span> Profit</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bar">
+      <a href="index.html" style="color:var(--sky)">&larr; Back to Portfolio</a>
+      &nbsp;&nbsp;|&nbsp;&nbsp; &copy; 2026 Zameer Haider Chattha
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/tools.js"></script>
+</body>
+</html>
